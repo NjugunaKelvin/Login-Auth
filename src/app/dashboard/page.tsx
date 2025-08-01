@@ -42,7 +42,7 @@ export default function DashboardPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <h2 className="text-2xl font-bold text-white">Dashboard</h2>
+              <h2 className="text-2xl font-bold text-white">Growth Journey</h2>
               <p className="text-white/60 mt-1">
                 Welcome back, {session?.user?.name}
               </p>
@@ -121,7 +121,6 @@ export default function DashboardPage() {
                 { id: "growth", icon: <TrendingUp size={20} />, label: "Gowth Journey" },
                 { id: "projects", icon: <Code size={20} />, label: "My Projects" },
                 { id: "learning", icon: <BookOpen size={20} />, label: "Continue Learning" },
-                { id: "resume", icon: <FileText size={20} />, label: "Resume Builder" },
                 { id: "goals", icon: <Flag size={20} />, label: "Goals" },
                 { id: "skills tracker", icon: <Brain size={20} />, label: "Skill Tracker" },
                 { id: "milestones", icon: <Mountain size={20} />, label: "Milestones" },
