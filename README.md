@@ -7,3 +7,5 @@ Once logged in, you land in the Dev Journey home page with the dashboard
 - NextAuth      > For authentication. I used the Goodle client ID and client secret and the same for Github.
 - TypeScript    > Programming language used.
 - Tailwind CSS  > Sttyling the UI 
+
+# [Give it a go] (https://login-dev-journey.netlify.app/)

@@ -6,24 +6,8 @@ import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
-  LayoutDashboard,
-  BookOpen,
-  Target,
-  Mountain,
-  Brain,
-  Archive,
-  Settings,
-  TrendingUp,
-  Flag,
-  Bell,
-  HelpCircle,
-  Search,
-  Calendar,
-  MessageSquare,
-  FileText,
-  Code,
-  Users,
-  LogOut,
+  LayoutDashboard, BookOpen,Target,Mountain,Brain,Archive,Settings,TrendingUp,Flag,Bell,HelpCircle,
+  Search,Calendar,MessageSquare,FileText,Code,Users,LogOut,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
