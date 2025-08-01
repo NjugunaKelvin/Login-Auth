@@ -8,4 +8,4 @@ Once logged in, you land in the Dev Journey home page with the dashboard
 - TypeScript    > Programming language used.
 - Tailwind CSS  > Sttyling the UI 
 
-# [Give it a go] (https://login-dev-journey.netlify.app/)
+### [Give it a go] (https://login-dev-journey.netlify.app/)

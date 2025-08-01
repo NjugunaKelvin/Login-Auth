@@ -118,11 +118,10 @@ export default function DashboardPage() {
         <nav className="p-2">
           <ul className="space-y-1">
             {[
-                { id: "dashboard", icon: <LayoutDashboard size={20} />, label: "Dashboard" },
+                { id: "growth", icon: <TrendingUp size={20} />, label: "Gowth Journey" },
                 { id: "projects", icon: <Code size={20} />, label: "My Projects" },
                 { id: "learning", icon: <BookOpen size={20} />, label: "Continue Learning" },
                 { id: "resume", icon: <FileText size={20} />, label: "Resume Builder" },
-                { id: "growth", icon: <TrendingUp size={20} />, label: "Growth Journey" },
                 { id: "goals", icon: <Flag size={20} />, label: "Goals" },
                 { id: "skills tracker", icon: <Brain size={20} />, label: "Skill Tracker" },
                 { id: "milestones", icon: <Mountain size={20} />, label: "Milestones" },
