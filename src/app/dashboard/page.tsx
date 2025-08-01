@@ -6,16 +6,30 @@ import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
-  LayoutDashboard, BookOpen,Target,Mountain,Brain,Archive,Settings,TrendingUp,Flag,Bell,HelpCircle,
-  Search,Calendar,MessageSquare,FileText,Code,Users,LogOut,
+  LayoutDashboard, BookOpen, Target, Mountain, Brain, Archive, Settings, 
+  TrendingUp, Flag, Bell, HelpCircle, Search, Calendar, MessageSquare, 
+  FileText, Code, Users, LogOut, ClipboardList, Award, Bookmark, 
+  MessageCircle, FileText as PitchDeckIcon, User, Mail
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import GrowthJourney from "@/sections/growth-journey";
+import MyProjects from "@/sections/my-projects";
+import BuildStudio from "@/sections/build-studio";
+import PitchDecks from "@/sections/pitch-decks";
+import Mentorship from "@/sections/mentorship";
+import Tasks from "@/sections/tasks";
+import Milestones from "@/sections/milestones";
+import Resources from "@/sections/resources";
+import Community from "@/sections/community";
+import Profile from "@/sections/profile";
+import Notifications from "@/sections/notifications";
+import SettingsPage from "@/sections/settings";
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("dashboard");
+  const [activeTab, setActiveTab] = useState("growth");
   const [secondarySidebarOpen, setSecondarySidebarOpen] = useState(false);
 
   useEffect(() => {
@@ -34,45 +48,30 @@ export default function DashboardPage() {
 
   const renderContent = () => {
     switch (activeTab) {
-      case "dashboard":
-        return (
-          <div className="space-y-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <h2 className="text-2xl font-bold text-white">Growth Journey</h2>
-              <p className="text-white/60 mt-1">
-                Welcome back, {session?.user?.name}
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {[
-                { title: "Active Projects", value: "5", icon: <BookOpen size={18} /> },
-                { title: "Tasks Completed", value: "24", icon: <Target size={18} /> },
-                { title: "Upcoming Deadlines", value: "3", icon: <Calendar size={18} /> },
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="bg-white/5 p-4 rounded-lg border border-white/10"
-                >
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <p className="text-white/60 text-sm">{item.title}</p>
-                      <p className="text-2xl font-bold mt-2">{item.value}</p>
-                    </div>
-                    <div className="p-2 bg-white/10 rounded-lg">{item.icon}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        );
+      case "growth":
+        return <GrowthJourney session={session} />;
+      case "projects":
+        return <MyProjects />;
+      case "build-studio":
+        return <BuildStudio />;
+      case "pitch-decks":
+        return <PitchDecks />;
+      case "mentorship":
+        return <Mentorship />;
+      case "tasks":
+        return <Tasks />;
+      case "milestones":
+        return <Milestones />;
+      case "resources":
+        return <Resources />;
+      case "community":
+        return <Community session={session} />;
+      case "profile":
+        return <Profile session={session} />;
+      case "notifications":
+        return <Notifications />;
+      case "settings":
+        return <SettingsPage session={session} />;
       default:
         return (
           <motion.div
@@ -118,15 +117,17 @@ export default function DashboardPage() {
         <nav className="p-2">
           <ul className="space-y-1">
             {[
-                { id: "growth", icon: <TrendingUp size={20} />, label: "Gowth Journey" },
-                { id: "projects", icon: <Code size={20} />, label: "My Projects" },
-                { id: "learning", icon: <BookOpen size={20} />, label: "Continue Learning" },
-                { id: "goals", icon: <Flag size={20} />, label: "Goals" },
-                { id: "skills tracker", icon: <Brain size={20} />, label: "Skill Tracker" },
-                { id: "milestones", icon: <Mountain size={20} />, label: "Milestones" },
-                { id: "resources", icon: <Archive size={20} />, label: "Resources" },
-                { id: "settings", icon: <Settings size={20} />, label: "Settings" },
-
+              { id: "growth", icon: <TrendingUp size={20} />, label: "Growth Journey" },
+              { id: "projects", icon: <Code size={20} />, label: "My Projects" },
+              { id: "build-studio", icon: <LayoutDashboard size={20} />, label: "Build Studio" },
+              { id: "pitch-decks", icon: <PitchDeckIcon size={20} />, label: "Pitch Decks" },
+              { id: "mentorship", icon: <Users size={20} />, label: "Mentorship" },
+              { id: "tasks", icon: <ClipboardList size={20} />, label: "Tasks" },
+              { id: "milestones", icon: <Award size={20} />, label: "Milestones" },
+              { id: "resources", icon: <BookOpen size={20} />, label: "Resources" },
+              { id: "community", icon: <MessageCircle size={20} />, label: "Community" },
+              { id: "profile", icon: <User size={20} />, label: "Profile" },
+              { id: "settings", icon: <Settings size={20} />, label: "Settings" },
             ].map((item) => (
               <li key={item.id}>
                 <button
@@ -175,7 +176,10 @@ export default function DashboardPage() {
             </div>
             
             <div className="flex items-center space-x-4">
-              <button className="p-2 text-white/60 hover:text-white transition relative">
+              <button 
+                onClick={() => setActiveTab("notifications")}
+                className="p-2 text-white/60 hover:text-white transition relative"
+              >
                 <Bell size={18} />
                 <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
               </button>
@@ -194,14 +198,14 @@ export default function DashboardPage() {
                 title="Sign out"
               >
                 <LogOut size={18} />
-                <span className="text-sm">Sign out</span>
+                {sidebarOpen && <span className="text-sm">Sign out</span>}
               </button>
               
               <div className="flex items-center space-x-2">
                 <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
                   {session?.user?.name?.charAt(0)}
                 </div>
-                <span className="text-sm font-medium">{session?.user?.name}</span>
+                {sidebarOpen && <span className="text-sm font-medium">{session?.user?.name}</span>}
               </div>
             </div>
           </div>
